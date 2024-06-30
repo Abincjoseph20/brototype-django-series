@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+{% block content %}
+{% include 'menu.html' %}
+<h1>list</h1>
+
+<table>
+    <tr>
+        <th>title</th>
+        <th>year</th>
+        <th>description</th>
+    </tr>
+   {% for i in movies %}
+    <tr>
+        <td><h1> name:{{i.title | upper }} </h1></td>
+        <td><p> year:{{ i.year | upper }} </p></td>
+        <td><p> summery: {{ i.summery |upper|default:'no data avilable ' }} </p></td>
+    </tr>
+    {% endfor %}
+
+</table>
+{% endblock content %}
+</body>
+</html>

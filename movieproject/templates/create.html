@@ -12,7 +12,7 @@
 <h1>create</h1>
 
 
-<form method="POST">
+<form method="POST" enctype="multipart/form-data">
     {% csrf_token %}
 
         {{ frm.as_p }}

@@ -1,30 +1,32 @@
+
 from django .shortcuts import render,redirect
 from . models import MovieInfo
 from.forms import MovieForm
+
 # Create your views here.
 
 def edit(request,pk):
     instance_tobedit = MovieInfo.objects.get(pk=pk)
+
     if request.POST:
         title = request.POST.get('title')
         year = request.POST.get('year')
         decription = request.POST.get('decription')
+        imgs = request.FILES.get('imgs')
 
         instance_tobedit.title = title
         instance_tobedit.year = year
         instance_tobedit.decription = decription
+        instance_tobedit.imgs = imgs
         instance_tobedit.save()
 
     frm=MovieForm(instance=instance_tobedit)
     return render(request,'create.html',{'frm':frm})
 
-
-
-
 def create(request):
     frm=MovieForm()
     if request.POST:
-        frm=MovieForm(request.POST)
+        frm=MovieForm(request.POST,request.FILES)
         if frm.is_valid():
             frm.save()
     else:

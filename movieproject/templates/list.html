@@ -21,13 +21,9 @@
    {% for i in movies %}
     <tr>
         <td><h1> name:{{ i.title | upper }} </h1></td>
-
         <td><p> year:{{ i.year | upper }} </p></td>
-
         <td><p> summery: {{ i.decription |upper|default:'no data avilable ' }} </p></td>
-
         <td><a href="{% url 'edit' i.id %}">edit</a>/<a href="{% url 'delete' i.id %}">delete</a></td>
-
         {% if i.imgs %}
         <td><img src="{{ i.imgs.url }}" style=" width:200px ; height:200px">images</td>
         {% endif %}

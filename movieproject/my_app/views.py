@@ -2,9 +2,11 @@
 from django .shortcuts import render,redirect
 from . models import MovieInfo
 from.forms import MovieForm
-
+from django.contrib.auth.decorators import login_required
 # Create your views here.
 
+
+@login_required(login_url='login/')
 def edit(request,pk):
     instance_tobedit = MovieInfo.objects.get(pk=pk)
 
@@ -23,6 +25,8 @@ def edit(request,pk):
     frm=MovieForm(instance=instance_tobedit)
     return render(request,'create.html',{'frm':frm})
 
+
+@login_required(login_url='login/')
 def create(request):
     frm=MovieForm()
     if request.POST:
@@ -31,16 +35,19 @@ def create(request):
             frm.save()
     else:
         frm=MovieForm()
-
     return render(request,'create.html',{'frm':frm})
 
 
+
+@login_required(login_url='login/')
 def list(request):
     movie_list = MovieInfo.objects.all()
     print(movie_list)
     return render(request, 'list.html', {'movies':movie_list})
 
 
+
+@login_required(login_url='login/')
 def delete(request,pk):
     instance=MovieInfo.objects.get(pk=pk)
     instance.delete()

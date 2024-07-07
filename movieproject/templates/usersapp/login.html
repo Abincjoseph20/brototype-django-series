@@ -5,9 +5,8 @@
     <title>Title</title>
 </head>
 <body>
-{% extends 'blanklayout.html' %}
-{% block content %}
-<h2>create user</h2>
+
+<h2>login</h2>
 <form method="POST" enctype="multipart/form-data">
     {% csrf_token %}
       <!--{{ frm.as_p }}-->
@@ -15,16 +14,10 @@
 
     <br>
     <br>
-    
+
     <label>password:</label><input type="password" name="password">
 
-    <button type="submit" value="submit">signup</button>
+    <button type="submit" value="submit">login</button>
 </form>
-<p style="background-color: red;">
-{% if user %}
-new user created {user.username}
-{% endif %}
-</p>
-{% endblock %}
 </body>
 </html>
